@@ -29,7 +29,7 @@ function Signature() {
 
 		setTimeout(() => {
 			signatureRef.current.style.display = "initial";
-		}, 2500);
+		}, 3500);
 	}, []);
 
   return (
