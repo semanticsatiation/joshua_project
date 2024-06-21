@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Virtual } from 'swiper/modules';
+import { Autoplay, Navigation, Zoom } from 'swiper/modules';
 
 const photoCategories = {
     "tank_top": [1, 9],
@@ -12,6 +12,8 @@ const photoCategories = {
 
 // Import Swiper styles
 import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/zoom';
 
 // time complexity can be seen as O(n)
 const shuffle = (array) => { 
@@ -29,14 +31,16 @@ const addImagePaths = (photos, highlight) => {
 };
 
 const ScrollingImageGallery = ({highlight}) => {
-    const swiperRef = useRef(null); // Create a ref for the Swiper component
-    const [mainImage, setMainImage] = useState("");
-    const [currentPhotoSet, setCurrentPhotoSet] = useState([]);
-    const [transition, setTransition] = useState(false);
-    
+    const swiperRef = useRef(null);
+    const zoomRef = useRef(null);
 
+    const [currentPhotoSet, setCurrentPhotoSet] = useState([]);
+    const [galleryTransition, setGalleryTransition] = useState(true);
+
+    const [mainImage, setMainImage] = useState("");
+    
     useEffect(() => {
-        setTransition(true);
+        setGalleryTransition(false);
 
         const photos = [];
             
@@ -54,8 +58,8 @@ const ScrollingImageGallery = ({highlight}) => {
         setCurrentPhotoSet(photos);
 
         setTimeout(() => {
-            setTransition(false);
-        }, 500)
+            setGalleryTransition(true);
+        }, 0);
 
         if (swiperRef.current) {
             setTimeout(() => {
@@ -65,13 +69,66 @@ const ScrollingImageGallery = ({highlight}) => {
         }
     }, [highlight]);
 
-    const displayLargeImage = (source) => {
-        console.log(source);
+    const navigatePhotoSet = (direction) => {
+        const currentMainindex = currentPhotoSet.findIndex((element) => element === mainImage);
+        let newIndex = currentMainindex + (direction === "l" ? (-1) : (1));
+        
+        if (newIndex >= currentPhotoSet.length) {
+            newIndex = 0;
+        } else if (newIndex < 0) {
+            newIndex = currentPhotoSet.length - 1;
+        }
+
+        setMainImage(currentPhotoSet[newIndex]);
     }
 
+    const closeGallery = (event) => {
+        const target = event.target;
+
+        if (target.id === "main-image-container" || target.id === "main-image-wrapper") {
+            document.body.classList.remove("no-scroll");
+            setMainImage("");
+        }
+    }
+    const setTargetImage = (imagePath) => {
+        document.body.classList.add("no-scroll");
+        setMainImage(imagePath);
+    } 
+
     return (
-        // the reason for onMouseLeave and onPointerDown is because swiper stops working if dragged back and forth in a short amount of time 
-        <div id={transition ? "scrolling-gallery" : ""} onMouseEnter={() => swiperRef.current.swiper.autoplay.stop()} onMouseLeave={() => swiperRef.current.swiper.autoplay.start()} onPointerDown={() => {setTimeout(() => {swiperRef.current.swiper.autoplay.start();}, 200)}}>
+        <div className={galleryTransition ? "transition-gallery" : ""} id="gallery">
+            {
+                mainImage && (
+                    <div onClick={closeGallery} id='main-image-wrapper'>
+                       <div id='main-image-container'>
+                           <span onClick={() => navigatePhotoSet("l")}  id="left-arrow">{"<"}</span>
+                            <Swiper
+                                ref={zoomRef}
+                                modules={[Navigation, Zoom]}
+                                navigation={{
+                                    nextEl: '#right-arrow',
+                                    prevEl: '#left-arrow',
+                                }}
+                                zoom={{
+                                    maxRatio: 2,
+                                    minRatio: 1
+                                }}
+                                loop
+                                grabCursor
+                            >{
+                                currentPhotoSet.map((imagePath, index) =>
+                                    <SwiperSlide key={highlight + "-" + index} className='swiper-slide'>
+                                        <div className="swiper-zoom-container">
+                                            <img onClick={() => setTargetImage(imagePath)} loading='lazy' src={`src/assets/images/high_quality_images/large_images/${imagePath}`} alt='' />
+                                        </div>
+                                    </SwiperSlide>
+                                )
+                            }</Swiper>
+                            <span onClick={() => navigatePhotoSet("r")} id="right-arrow">{">"}</span>
+                        </div>
+                    </div>
+                )
+            }
             <Swiper
                 ref={swiperRef}
                 modules={[Autoplay]}
@@ -88,7 +145,7 @@ const ScrollingImageGallery = ({highlight}) => {
                 grabCursor
             >{
                 currentPhotoSet.map((imagePath, index) => 
-                    <SwiperSlide key={highlight + "-" + index} className='swiper-slide'><img onClick={() => displayLargeImage(imagePath)} loading='lazy' src={`src/assets/images/slides/${imagePath}`} alt='' /></SwiperSlide>
+                    <SwiperSlide key={highlight + "-" + index} className='swiper-slide'><img onClick={() => setTargetImage(imagePath)} loading='lazy' src={`src/assets/images/slides/${imagePath}`} alt='' /></SwiperSlide>
                 )
             }</Swiper>
         </div>
