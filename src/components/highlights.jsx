@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import ScrollingImageGallery from './scrollingImageGallery';
 
-// IMPORTANT: Maybe use context here instead of passing through this component to reach ScrollingImageGallery
 function Highlights() {
   const highlightImageRef = useRef(null);
   const highlightsContainerRef = useRef(null);
@@ -57,6 +56,7 @@ function Highlights() {
   return (
     <div ref={highlightsContainerRef} className='section' id='main-content'>
       <div id='highlights'>
+        <div id='gallery-anchor'></div>
           {/* 
               i need the maxHeight to be set to 3 times the width to create a portrait look
               to achieve this i multioply the width of the first container by 3.  is this the best way?
