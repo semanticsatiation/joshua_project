@@ -36,10 +36,6 @@ function Header() {
               </ul>
             </li>
           </ul>
-
-          {/* <ul id='header-list-mobile'>
-            <li><h1 className='name-intro'>JOSHUA DRUMMOND</h1></li>
-          </ul> */}
         </nav>
     </div>
   );

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { getCloudFrontUrl } from '../utils/imageHelper';
 
 
 
@@ -16,7 +17,6 @@ function SideBar() {
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.intersectionRatio >= 0.70) {
-                console.log(entry.target.id);
                 setCurrentIcon(entry.target.id);
             }
         });
@@ -24,12 +24,10 @@ function SideBar() {
         threshold: [0.70]
     });
 
-    // observe each element if it was found
     if (!!hero) observer.observe(hero);
     if (!!gallery) observer.observe(gallery);
     if (!!features) observer.observe(features);
 
-    // stop observing when your component unmounts
     return () => {
       if (!!hero) observer.unobserve(hero);
       if (!!gallery) observer.unobserve(gallery);
@@ -57,12 +55,12 @@ function SideBar() {
 
   return (
     <div id='side-bar'>
-        <img ref={lumpRef} id='lump' src="src\assets\svgs\font-awesome\lump.svg" alt="" />
+        <img ref={lumpRef} id='lump' src={getCloudFrontUrl("assets/svgs/font_awesome/lump.svg")} alt="" />
         <ul id='icon-list'>
-            <li className={currentIcon ===  "hero" ? "current-icon" : ""}><a href="#hero"><img className='icon' src="src\assets\svgs\font-awesome\about.svg" alt="" /></a></li>
-            <li className={currentIcon ===  "highlights" ? "current-icon" : ""}><a href="#gallery-anchor"><img className='icon' src="src\assets\svgs\font-awesome\gallery.svg" alt="" /></a></li>
-            <li className={currentIcon ===  "body-scan" ? "current-icon" : ""}><a href="#body-scan"><img className='icon' src="src\assets\svgs\font-awesome\features.svg" alt="" /></a></li>
-            <li className={currentIcon ===  "social" ? "current-icon" : ""}><a href="#social"><img className='icon' src="src\assets\svgs\font-awesome\social.svg" alt="" /></a></li>
+            <li className={currentIcon ===  "hero" ? "current-icon" : ""}><a href="#hero"><img className='icon' src={getCloudFrontUrl("assets/svgs/font_awesome/about.svg")} alt="" /></a></li>
+            <li className={currentIcon ===  "highlights" ? "current-icon" : ""}><a href="#gallery-anchor"><img className='icon' src={getCloudFrontUrl("assets/svgs/font_awesome/gallery.svg")} alt="" /></a></li>
+            <li className={currentIcon ===  "body-scan" ? "current-icon" : ""}><a href="#body-scan"><img className='icon' src={getCloudFrontUrl("assets/svgs/font_awesome/features.svg")} alt="" /></a></li>
+            <li className={currentIcon ===  "social" ? "current-icon" : ""}><a href="#social"><img className='icon' src={getCloudFrontUrl("assets/svgs/font_awesome/social.svg")} alt="" /></a></li>
         </ul>
     </div>
   );

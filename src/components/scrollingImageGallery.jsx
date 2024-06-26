@@ -9,17 +9,17 @@ const photoCategories = {
     "black_suit": [29, 39]
 }
 
-
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/zoom';
+import { getCloudFrontUrl } from "../utils/imageHelper";
 
 // time complexity can be seen as O(n)
 const shuffle = (array) => { 
     for (let i = array.length - 1; i > 0; i--) { 
-    const j = Math.floor(Math.random() * (i + 1)); 
-    [array[i], array[j]] = [array[j], array[i]]; 
+        const j = Math.floor(Math.random() * (i + 1)); 
+        [array[i], array[j]] = [array[j], array[i]]; 
     }
     
     return array; 
@@ -121,7 +121,7 @@ const ScrollingImageGallery = ({highlight}) => {
                                 currentPhotoSet.map((imagePath, index) =>
                                     <SwiperSlide key={highlight + "-" + index} className='swiper-slide'>
                                         <div className="swiper-zoom-container">
-                                            <img onClick={() => setTargetImage(imagePath)} loading='lazy' src={`src/assets/images/high_quality_images/large_images/${imagePath}`} alt='' />
+                                            <img onClick={() => setTargetImage(imagePath)} loading='lazy' src={getCloudFrontUrl(`assets/images/high_quality_images/large_images/${imagePath}`)} />
                                         </div>
                                     </SwiperSlide>
                                 )
@@ -147,7 +147,7 @@ const ScrollingImageGallery = ({highlight}) => {
                 grabCursor
             >{
                 currentPhotoSet.map((imagePath, index) => 
-                    <SwiperSlide key={highlight + "-" + index} className='swiper-slide'><img onClick={() => setTargetImage(imagePath)} loading='lazy' src={`src/assets/images/slides/${imagePath}`} alt='' /></SwiperSlide>
+                    <SwiperSlide key={highlight + "-" + index} className='swiper-slide'><img onClick={() => setTargetImage(imagePath)} loading='lazy' src={getCloudFrontUrl(`assets/images/slides/${imagePath}`)} /></SwiperSlide>
                 )
             }</Swiper>
         </div>
