@@ -53,6 +53,7 @@ html {
 }
 
 #main-image-wrapper {
+	user-select: none;
 	position: fixed;
 	top: 0;
 	left: 0;
