@@ -423,10 +423,6 @@ html {
 	}
 }
 
-swiper-slide {
-	user-select: none;
-}
-
 .swiper-wrapper{
 	transition-timing-function : linear;
 }
