@@ -2,17 +2,38 @@ import { getCloudFrontUrl } from "../utils/imageHelper";
 
 function Footer() {
   return (
-    <footer className='section'>
-      <nav>
-        <span>Body by <a target='_blank' href="https://www.freepik.com/free-vector/hand-drawn-human-body-outline-illustration_49669604.htm">Freepik</a></span>
-        <ul>
-          <li><a href=""><img className='icon' src={getCloudFrontUrl('assets/svgs/font_awesome/instagram.svg')} /></a></li>
-          <li><a href=""><img className='icon' src={getCloudFrontUrl('assets/svgs/font_awesome/facebook.svg')} /></a></li>
-          <li><a href=""><img className='icon' src={getCloudFrontUrl('assets/svgs/font_awesome/linkedin.svg')} /></a></li>
-        </ul>
-      </nav>
-      <span>© 2024 All rights reserved. – Designed & Coded by Benjamin Candelario</span>
-    </footer>
+    <>
+      <footer id="contact" className="section">
+        <div id="footer-container">
+          <div id="social-container">
+            <h2>Get In Touch</h2>
+            <p>Always looking for opportunities.</p>
+            <nav>
+              <ul id="social-list">
+                <li><a target="_blank" href=""><img className='icon' src={getCloudFrontUrl('assets/svgs/font_awesome/instagram.svg')} /></a></li>
+                <li><a target="_blank" href=""><img className='icon' src={getCloudFrontUrl('assets/svgs/font_awesome/facebook.svg')} /></a></li>
+                <li><a target="_blank" href=""><img className='icon' src={getCloudFrontUrl('assets/svgs/font_awesome/linkedin.svg')} /></a></li>
+              </ul>
+            </nav>
+          </div>
+          <div id="contact-container">
+            <div>
+              <img className="icon" src={getCloudFrontUrl("assets/svgs/font_awesome/phone.svg")} alt="" />
+              <p><a target="_blank" href="tel:4847819915">484-781-9915</a></p>
+
+              <div className="background-shadow"></div>
+            </div>
+            <div>
+              <img className="icon" src={getCloudFrontUrl("assets/svgs/font_awesome/email.svg")} alt="" />
+              <p><a target="_blank" href="mailto:ben4853@gmail.com">ben4853@gmail.com</a></p>
+              <p></p>
+              <div className="background-shadow"></div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <p id="copyright">© 2024 All rights reserved. – Designed & Coded by Benjamin Candelario</p>
+    </>
   );
 }
 

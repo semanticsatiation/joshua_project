@@ -12,7 +12,8 @@ function Highlights() {
 
   const updateHeight = () => {
     if (highlightImageRef.current) {
-      setHeight(highlightImageRef.current.clientWidth * 3);
+      // change highlight container sizes here
+      setHeight(highlightImageRef.current.clientWidth * 2.5);
     }
   };
 
@@ -56,28 +57,25 @@ function Highlights() {
 
   return (
     <div ref={highlightsContainerRef} className='section' id='main-content'>
-      <div id='highlights'>
-        <div id='gallery-anchor'></div>
-          {/* 
-              i need the maxHeight to be set to 3 times the width to create a portrait look
-              to achieve this i multiply the width of the first container by 3.  is this the best way?
-          */}
-          <div ref={highlightImageRef} onClick={() => setNewHighlight("tank_top")} className={`highlight-container ${highlight === "tank_top" ? "highlight" : ""} ${fade ? "highlight-fade-1" : ""}`} style={{maxHeight: height}}>
-              <img loading="lazy" src={getCloudFrontUrl("assets/images/highlights/Joshua_J-3web.webp")} alt="" />
-          </div>
-          <div onClick={() => setNewHighlight("black_suit")} className={`highlight-container ${highlight === "black_suit" ? "highlight" : ""} ${fade ? "highlight-fade-2" : ""}`} style={{maxHeight: height}}>
-              <img loading="lazy" src={getCloudFrontUrl("assets/images/highlights/Joshua_J-34web.webp")} alt="" />
-          </div>
-          <div onClick={() => setNewHighlight("mercedes")} className={`highlight-container ${highlight === "mercedes" ? "highlight" : ""} ${fade ? "highlight-fade-3" : ""}`} style={{maxHeight: height}}>
-              <img loading="lazy" src={getCloudFrontUrl("assets/images/highlights/Joshua_J-26web.webp")} alt="" />
-          </div>
-          <div onClick={() => setNewHighlight("boxing")} className={`highlight-container ${highlight === "boxing" ? "highlight" : ""} ${fade ? "highlight-fade-4" : ""}`} style={{maxHeight: height}}>
-              <img loading="lazy" src={getCloudFrontUrl("assets/images/highlights/Joshua_J-12web.webp")} alt="" />
-          </div>
+      <div id='gallery-container'>
+        <div id='highlights'>
+            <div ref={highlightImageRef} onClick={() => setNewHighlight("tank_top")} className={`highlight-container ${highlight === "tank_top" ? "highlight" : ""} ${fade ? "highlight-fade-1" : ""}`} style={{maxHeight: height}}>
+                <img loading="lazy" src={getCloudFrontUrl("assets/images/highlights/Joshua_J-3web.webp")} alt="" />
+            </div>
+            <div onClick={() => setNewHighlight("black_suit")} className={`highlight-container ${highlight === "black_suit" ? "highlight" : ""} ${fade ? "highlight-fade-2" : ""}`} style={{maxHeight: height}}>
+                <img loading="lazy" src={getCloudFrontUrl("assets/images/highlights/Joshua_J-34web.webp")} alt="" />
+            </div>
+            <div onClick={() => setNewHighlight("mercedes")} className={`highlight-container ${highlight === "mercedes" ? "highlight" : ""} ${fade ? "highlight-fade-3" : ""}`} style={{maxHeight: height}}>
+                <img loading="lazy" src={getCloudFrontUrl("assets/images/highlights/Joshua_J-26web.webp")} alt="" />
+            </div>
+            <div onClick={() => setNewHighlight("boxing")} className={`highlight-container ${highlight === "boxing" ? "highlight" : ""} ${fade ? "highlight-fade-4" : ""}`} style={{maxHeight: height}}>
+                <img loading="lazy" src={getCloudFrontUrl("assets/images/highlights/Joshua_J-12web.webp")} alt="" />
+            </div>
+        </div>
+        {
+          fade && <ScrollingImageGallery highlight={highlight}/>
+        }
       </div>
-      {
-        fade && <ScrollingImageGallery highlight={highlight}/>
-      }
     </div>
   );
 }

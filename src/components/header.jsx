@@ -1,10 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-
-
+import { scrollToMiddle } from '../utils/scrollHelper';
 
 function Header() {
   const nameRef = useRef(null);
-  const [currentIcon, setCurrentIcon] = useState("");
 
   useEffect(() => {
     document.body.onscroll = () => {
@@ -24,15 +22,15 @@ function Header() {
           <ul id='header-list'>
             <li>
               <ul>
-                <li onClick={() => setCurrentIcon("")}><a href="#hero">About</a></li>
-                <li><a href="#gallery-anchor">Gallery</a></li>
+                <li><a href="#hero">About</a></li>
+                <li onClick={() => scrollToMiddle("features")}>Features</li>
               </ul>
             </li>
             <li><h1 ref={nameRef} className='name-intro'>JOSHUA DRUMMOND</h1></li>
             <li>
               <ul>
-                <li><a href="#body-scan">Features</a></li>
-                <li><a href="#social">Social</a></li>
+                <li onClick={() => scrollToMiddle("main-content")}>Gallery</li>
+                <li><a href="#contact">Contact</a></li>
               </ul>
             </li>
           </ul>
