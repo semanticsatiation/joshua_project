@@ -10,9 +10,8 @@ function App() {
     <div id='app'>
       <Header/>
       <Hero/>
-      {/* IMPORTANT: BODY ANIMATION KEEPS INDEXING IN FRONT OF MAIN-IMAGE-WRAPPER */}
-      <Highlights />
       <BodyScan/>
+      <Highlights />
       <SideBar/>
       <Footer></Footer>
     </div>

@@ -49,7 +49,7 @@ table {
 
 html {
 	scroll-behavior: smooth;
-	background-color: black;
+	background-color: #101010;
 }
 
 #main-image-wrapper {
@@ -78,18 +78,6 @@ html {
 	width: 100%;
 }
 
-#exit-button {
-	position: absolute;
-	top: 2%;
-	right: 2%;
-	color: white;
-	font-size: 2.5em;
-	font-family: "Barlow", sans-serif;
-	font-weight: 700;
-	font-style: normal;
-	cursor: pointer;
-}
-
 #left-arrow, #right-arrow {
 	user-select: none;
 	text-align: center;
@@ -112,11 +100,7 @@ html {
 	opacity: -1 !important;
 }
 
-#gallery-anchor {
-	position: absolute;
-	z-index: -1;
-	top: -58px;
-}
+
 
 @keyframes fade-in {
 	0% {
@@ -129,11 +113,7 @@ html {
 
 .section {
 	margin: auto;
-	width: 100%;
-	max-width: 80rem;
-	padding: 100px 0;
-	padding: 100px 1em 0 1em;
-	width: calc(100% - 32px);
+	padding: 100px 1em 100px 1em;
 }
 
 #hero {
@@ -235,77 +215,23 @@ html {
 	} 
 }
 
+p, h2 {
+	font-family: "Nunito Sans", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 700;
+	font-style: normal;
+	line-height: 1.4em;
+}
+
 #hero p {
 	position: absolute;
 	margin-top: 1em;
-	line-height: 1.4em;
 	width: calc(100% - 38.4px);
 	padding: 0 1em 0 1em;
 	font-size: 1.2em;
 	color: rgb(184, 131, 33);
 	margin: auto;
-	font-family: "Nunito Sans", sans-serif;
-	font-optical-sizing: auto;
-	font-weight: 400;
-	font-style: normal;
 }
-
-#hamburger-9{
-	position: relative;
-	-webkit-transition: all 0.3s ease-in-out;
-	-o-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
-  }
-  
-  #hamburger-9.is-active{
-	-webkit-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	-o-transform: rotate(45deg);
-	transform: rotate(45deg);
-  }
-  
-  #hamburger-9:before{
-	content: "";
-	position: absolute;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	width: 70px;
-	height: 70px;
-	border: 5px solid transparent;
-	top: calc(50% - 35px);
-	left: calc(50% - 35px);
-	border-radius: 100%;
-	-webkit-transition: all 0.3s ease-in-out;
-	-o-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
-  }
-  
-  #hamburger-9.is-active:before{
-	border: 5px solid #ecf0f1;
-  }
-  
-  #hamburger-9.is-active .line{
-	width: 35px;
-  }
-  
-  #hamburger-9.is-active .line:nth-child(2){
-	opacity: 0;
-  }
-  
-  #hamburger-9.is-active .line:nth-child(1){
-	-webkit-transform: translateY(13px);
-	-ms-transform: translateY(13px);
-	-o-transform: translateY(13px);
-	transform: translateY(13px);
-  }
-  
-  #hamburger-9.is-active .line:nth-child(3){
-	-webkit-transform: translateY(-13px) rotate(90deg);
-	-ms-transform: translateY(-13px) rotate(90deg);
-	-o-transform: translateY(-13px) rotate(90deg);
-	transform: translateY(-13px) rotate(90deg);
-  }
 
 #header {
 	position: absolute;
@@ -330,9 +256,9 @@ html {
 	max-width: 1280px;
 }
 
-#header a {
+a {
 	color: #b88321;
-	text-decoration: none;
+	/* text-decoration: none; */
 }
 
 #header-list, #header-list ul {
@@ -341,11 +267,19 @@ html {
 	align-items: center;
 }
 
+#header-list ul li {
+	cursor: pointer;
+}
+
+#header-list li:not(#header-list > li:nth-child(2)) {
+	text-decoration: underline;
+}
+
 #lump {
 	position: absolute;
-	width: 110px;
+	width: 80px;
 	top: 53px;
-	right: 36px;
+	right: 19px;
 	transform: rotate(-90deg);
 	transition: transform 0.4s;
 }
@@ -355,7 +289,7 @@ html {
 	top: 5%;
 	right: 0px;
 	z-index: 9999;
-	width: 80px;
+	width: 50px;
 }
 
 #icon-list {
@@ -363,7 +297,7 @@ html {
 	display: flex;
 	flex-direction: column;
 	gap: 2em;
-	background-color: #1a1a1a;
+	background-color: #383838d6;
 	padding: 30px 0;
 	text-align: center;
 	border-radius: 20px 0 0 20px;
@@ -374,16 +308,17 @@ html {
 	justify-content: center;
 	align-items: center;
 	margin: auto;
-	height: 60px;
-	width: 60px;
+	height: 40px;
+	width: 40px;
 	border-radius: 50px;
 	padding: 5px;
 	transition: padding 0.4s, transform 0.4s;
+	cursor: pointer;
 }
 
 .icon {
-	height: 40px;
-	width: 40px;
+	height: 30px;
+	width: 30px;
 }
 
 .current-icon {
@@ -427,6 +362,11 @@ html {
 	transition-timing-function : linear;
 }
 
+/* swiper goes over the header so we need to push it back */
+.transition-gallery > .swiper { 
+	z-index: -1;
+}
+
 .swiper-slide img {
 	cursor: pointer;
 	width: 100%;
@@ -453,7 +393,7 @@ swiper-container {
 	position: relative;
 	margin: auto;
 	z-index: -1;
-	max-width: 400px;
+	max-width: 500px;
 	width: 80%;
 }
 
@@ -483,12 +423,30 @@ swiper-container {
 	transform: translateY(977%) translateX(-11.5%);
 }
 
+#main-content {
+	background-color: #191919;
+}
+
+#gallery-container {
+	margin: auto;
+	max-width: 80rem;
+}
+
+.transition-gallery {
+	animation: fade-in 1s forwards;
+}
+
+#gallery {
+	opacity: 0;
+}
+
 #highlights {
 	position: relative;
 	display: flex;
 	justify-content: center;
 	gap: 10px;
 	margin-bottom: 1em;
+	box-sizing: border-box;
 }
 
 .highlight-container {
@@ -532,41 +490,62 @@ swiper-container {
 	will-change: filter, object-position;
 }
 
-.highlight-container:hover img, .highlight img {
+#highlights > .highlight-container:hover img, .highlight img {
 	filter: brightness(100%) grayscale(0%);
 }
 
-.highlight-container:nth-child(1) img {
-	object-position: 54% 6%;
-}
-
-.highlight-container:nth-child(2) img {
+#highlights > .highlight-container:nth-of-type(2) img {
 	object-position: center 20%;
 }
 
-.highlight-container:nth-child(3) img {
-	object-position: center 30%;
+#highlights > .highlight-container:nth-of-type(3) img {
+	object-position: center 60%;
 }
 
-.highlight-container:nth-child(4) img {
-	object-position: center 27%;
+#highlights > .highlight-container:nth-of-type(4) img {
+	object-position: center 90%;
 }
 
-.transition-gallery {
-	animation: fade-in 1s forwards;
-}
-
-#gallery {
-	opacity: 0;
+#highlights > .highlight-container:nth-of-type(5) img {
+	object-position: center 90%;
 }
 
 footer {
+	position: relative;
+	color: #b88321;
+}
+
+#footer-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: space-around;
+	max-width: 1280px;
+}
+
+#credentials {
+	position: relative;
 	color: #b88321;
-	height: 100px;
+	padding: 40px;
+	text-align: center;
+}
+
+#features {
+	position: relative;
+}
+
+#attribute {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	color: #b88321;
+	padding: 10px;
+	text-align: center;
+}
+
+#copyright {
+	color: #b88321;
+	padding: 10px;
+	text-align: center;
 }
 
 footer .icon {
@@ -575,20 +554,84 @@ footer .icon {
 }
 
 footer nav {
-	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
-footer ul {
+#social-container {
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+#social-list {
 	display: flex;
+	margin: auto;
 	gap: 1em;
+}
+
+#social-container h2 {
+	font-size: 3em;
+}
+
+#social-container p {
+	margin: 1em 0;
 }
 
 footer > span {
 	text-align: center;
 	font-size: 1em;
+}
+
+#contact-container {
+	width: calc(100% - 52px);
+	padding: 0 calc(1em + 20px) 0 1em;
+}
+
+#contact-container > div {
+	position: relative;
+	margin: auto;
+	text-align: center;
+	padding: 70px 40px;
+	background-color:#262626;
+	border-radius: 30px 0 30px 0;
+	flex: 1;
+	max-width: 204px;
+}
+
+#contact-container > div:nth-child(2) {
+	margin-top: 60px;
+}
+
+.background-shadow {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	background-color:#191919;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	border-radius: 30px 0 30px 0;
+}
+
+#contact-container p {
+	margin-top: 30px;
+}
+
+@media (min-width: 700px) {
+	#contact-container {
+		display: flex;
+		justify-content: center;
+		gap: 40px;
+	}
+
+	#contact-container > div {
+		margin: initial;
+	}
+
+	#contact-container > div:nth-child(2) {
+		margin-top: 0;
+	}
 }
 
 @media (min-width: 876px) {
@@ -664,8 +707,8 @@ footer > span {
 	}
 
 	#signature-singular {
+		position: relative;
 		display: none;
-		position: initial;
 	}
 
 	#signature-separate {
@@ -675,6 +718,29 @@ footer > span {
 	footer nav span {
 		font-size: 1.5em;
 	}
+}
+
+@media (min-width: 1350px) {
+	#footer-container {
+		margin: auto;
+		align-items: center;
+		justify-content: center;
+		flex-direction: row;
+	}
+
+	#footer-container > * {
+		width: 50%;
+	}
+
+	#social-container {
+		margin-bottom: 0;
+		text-align: initial;
+	}
+
+	#social-list {
+		margin: initial;
+		text-align: initial;
+	}
 
 	footer .icon {
 		height: 40px;
@@ -682,7 +748,7 @@ footer > span {
 	}
 }
 
-@media (min-width: 1900px) {
+@media (min-width: 1800px) {
 	#signature-singular {
 		display: initial;
 	}
