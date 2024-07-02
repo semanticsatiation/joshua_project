@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import ScrollingImageGallery from './scrollingImageGallery';
 import { getCloudFrontUrl } from '../utils/imageHelper';
+import Divider from './svgs/divider.jsx';
+
 
 function Highlights() {
   const highlightImageRef = useRef(null);
@@ -57,6 +59,8 @@ function Highlights() {
 
   return (
     <div ref={highlightsContainerRef} className='section' id='main-content'>
+      <Divider name={"gallery-top-divider"}/>
+
       <div id='gallery-container'>
         <div id='highlights'>
             <div ref={highlightImageRef} onClick={() => setNewHighlight("tank_top")} className={`highlight-container ${highlight === "tank_top" ? "highlight" : ""} ${fade ? "highlight-fade-1" : ""}`} style={{maxHeight: height}}>
@@ -76,6 +80,7 @@ function Highlights() {
           fade && <ScrollingImageGallery highlight={highlight}/>
         }
       </div>
+      <Divider name={"gallery-bottom-divider"}/>
     </div>
   );
 }

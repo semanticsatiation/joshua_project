@@ -155,8 +155,6 @@ html {
 	padding: 5px;
 }
 
-
-
 @keyframes fade-in {
 	0% {
 		opacity: 0;
@@ -213,7 +211,7 @@ html {
 
 #signature-singular {
 	position: absolute;
-	bottom: 0;
+	bottom: 30px;
 	left: 0;
 	width: 40%;
 	min-width: 280px;
@@ -323,8 +321,8 @@ a {
 	cursor: pointer;
 }
 
-#header-list li:not(#header-list > li:nth-child(2)) {
-	text-decoration: underline;
+#header-list a {
+	text-decoration: none;
 }
 
 #lump {
@@ -493,7 +491,13 @@ swiper-container {
 }
 
 #main-content {
+	position: relative;
 	background-color: #191919;
+	padding-bottom: 140px;
+}
+
+#gallery {
+	opacity: 0;
 }
 
 #gallery-formats {
@@ -524,10 +528,6 @@ swiper-container {
 
 .transition-gallery {
 	animation: fade-in 1s forwards;
-}
-
-#gallery {
-	opacity: 0;
 }
 
 #highlights {
@@ -621,11 +621,12 @@ footer {
 
 #features {
 	position: relative;
+	padding-bottom: 140px;
 }
 
 #attribute {
 	position: absolute;
-	bottom: 0;
+	top: 0;
 	right: 0;
 	color: #b88321;
 	padding: 10px;
@@ -634,7 +635,7 @@ footer {
 
 #copyright {
 	color: #b88321;
-	padding: 10px;
+	padding: 12px;
 	text-align: center;
 }
 
@@ -706,6 +707,50 @@ footer > span {
 
 #contact-container p {
 	margin-top: 30px;
+}
+
+/* divider */
+
+.divider {
+	position: absolute;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+	left: 0;
+}
+
+.divider svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 40px;
+}
+
+.divider .shape-fill {
+    fill: #191919;
+}
+
+.gallery-top-divider {
+    top: -40px;
+	transform: rotate(180deg);
+}
+
+.gallery-bottom-divider {
+    bottom: 0px;
+	transform: rotate(180deg);
+}
+
+.gallery-bottom-divider .shape-fill {
+	fill: #101010;
+}
+
+#hero .hero-bottom-divider {
+	transform: rotate(180deg);
+	bottom: 0;
+}
+
+.hero-bottom-divider .shape-fill {
+	fill: #101010;
 }
 
 @media (min-width: 700px) {
@@ -834,7 +879,6 @@ footer > span {
 		flex: 1 0 21%;
 	}
 }
-
 
 @media (min-width: 1350px) {
 	#footer-container {

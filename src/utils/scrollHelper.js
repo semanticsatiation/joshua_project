@@ -3,13 +3,13 @@ export const scrollToMiddle = (id) => {
     const headerHeight = document.getElementById('header').offsetHeight;
 
 
-    // only scroll to middle if the diebar is present
+    // only scroll to middle if the sidebar is present
     if (window.innerWidth < 900) {
         targetElement.scrollIntoView({block: "center"});
     } else {
         // offset scroll when header is present
         window.scrollTo({
-            top: targetElement.offsetTop + targetElement.offsetHeight / 2 - window.innerHeight / 2 - headerHeight / 2,
+            top: -20 + targetElement.offsetTop + targetElement.offsetHeight / 2 - window.innerHeight / 2 - headerHeight / 2,
             behavior: 'smooth'
         });
     }
