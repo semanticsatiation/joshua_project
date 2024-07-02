@@ -1,6 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Zoom } from 'swiper/modules';
+import FullImage from "./svgs/fullImage";
+import GridImages from "./svgs/gridImages";
+import { getCloudFrontUrl } from "../utils/imageHelper";
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/zoom';
 
 const photoCategories = {
     "tank_top": [1, 9],
@@ -9,11 +17,6 @@ const photoCategories = {
     "black_suit": [29, 39]
 }
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/zoom';
-import { getCloudFrontUrl } from "../utils/imageHelper";
 
 // time complexity can be seen as O(n)
 const shuffle = (array) => { 
@@ -22,7 +25,7 @@ const shuffle = (array) => {
         [array[i], array[j]] = [array[j], array[i]]; 
     }
     
-    return array; 
+    return array;  
 };
 
 const addImagePaths = (photos, highlight) => { 
@@ -39,6 +42,7 @@ const ScrollingImageGallery = ({highlight}) => {
     const [galleryTransition, setGalleryTransition] = useState(true);
 
     const [mainImage, setMainImage] = useState("");
+    const [isGrid, setIsGrid] = useState(false);
     
     useEffect(() => {
         setGalleryTransition(false);
@@ -86,7 +90,7 @@ const ScrollingImageGallery = ({highlight}) => {
     const closeGallery = (event) => {
         const target = event.target;
 
-        if (target.id === "main-image-container" || target.id === "main-image-wrapper") {
+        if (target.id === "main-image-container" || target.id === "main-image-wrapper" || target.id === "exit-button") {
             document.body.classList.remove("no-scroll");
             setMainImage("");
         }
@@ -98,35 +102,59 @@ const ScrollingImageGallery = ({highlight}) => {
     }
 
     return (
-        <div className={galleryTransition ? "transition-gallery" : ""} id="gallery">
+        <div className={`${galleryTransition ? "transition-gallery" : ""} ${isGrid ? "grid" : "full-image"}`} id="gallery">
             {
                 mainImage && (
                     <div onClick={closeGallery} id='main-image-wrapper'>
-                       <div id='main-image-container'>
-                           <span onClick={() => navigatePhotoSet("l")}  id="left-arrow">{"<"}</span>
-                            <Swiper
-                                ref={zoomRef}
-                                modules={[Navigation, Zoom]}
-                                navigation={{
-                                    nextEl: '#right-arrow',
-                                    prevEl: '#left-arrow',
-                                }}
-                                zoom={{
-                                    maxRatio: 2,
-                                    minRatio: 1
-                                }}
-                                loop
-                                grabCursor
-                            >{
-                                currentPhotoSet.map((imagePath, index) =>
-                                    <SwiperSlide key={highlight + "-" + index} className='swiper-slide'>
-                                        <div className="swiper-zoom-container">
-                                            <img onClick={() => setTargetImage(imagePath)} loading='lazy' src={getCloudFrontUrl(`assets/images/high_quality_images/large_images/${imagePath}`)} />
-                                        </div>
-                                    </SwiperSlide>
+                        <div id='main-image-container'>
+                            <h2>JOSHUA DRUMMOND</h2>
+
+                            <div id="gallery-formats">
+                                <div>
+                                    <FullImage isGrid={isGrid} setIsGrid={setIsGrid}/>
+                                    <GridImages isGrid={isGrid} setIsGrid={setIsGrid}/>
+                                </div>
+                                <img id="exit-button" className="icon" onClick={closeGallery} loading='lazy' src={'src/assets/svgs/font_awesome/exit.svg'} />
+                            </div>
+
+                            {
+                                isGrid ? (
+                                    <ul id="image-grid">{
+                                        currentPhotoSet.map((imagePath, index) =>
+                                            <li>
+                                                <img onClick={() => setTargetImage(imagePath)} loading='lazy' src={getCloudFrontUrl(`assets/images/high_quality_images/large_images/${imagePath}`)} />
+                                            </li>
+                                        )
+                                    }</ul>
+                                ) : (
+                                    <div id="full-image-container">
+                                        <span onClick={() => navigatePhotoSet("l")}  id="left-arrow">{"<"}</span>
+                                        <Swiper
+                                            ref={zoomRef}
+                                            modules={[Navigation, Zoom]}
+                                            navigation={{
+                                                nextEl: '#right-arrow',
+                                                prevEl: '#left-arrow',
+                                            }}
+                                            zoom={{
+                                                maxRatio: 2,
+                                                minRatio: 1
+                                            }}
+                                            loop
+                                            grabCursor
+                                            >{
+                                                currentPhotoSet.map((imagePath, index) =>
+                                                    <SwiperSlide key={highlight + "-" + index} className='swiper-slide'>
+                                                    <div className="swiper-zoom-container">
+                                                        <img onClick={() => setTargetImage(imagePath)} loading='lazy' src={getCloudFrontUrl(`assets/images/high_quality_images/large_images/${imagePath}`)} />
+                                                    </div>
+                                                </SwiperSlide>
+                                            )
+                                        }</Swiper>
+                                        <span onClick={() => navigatePhotoSet("r")} id="right-arrow">{">"}</span>
+                                    </div>
                                 )
-                            }</Swiper>
-                            <span onClick={() => navigatePhotoSet("r")} id="right-arrow">{">"}</span>
+                            }
                         </div>
                     </div>
                 )
