@@ -3,7 +3,6 @@ import { getCloudFrontUrl } from "../utils/imageHelper";
 function Footer() {
   return (
     <>
-    {/* IMPORTANT: FOOTER CAN NOT BE CLICKED IF Z-INDEX IS -1 BUT ALSO SWIPE GALLERY KEEPS COVERING IT!!! */}
       <footer id="contact" className="section">
         <div id="footer-container">
           <div id="social-container">

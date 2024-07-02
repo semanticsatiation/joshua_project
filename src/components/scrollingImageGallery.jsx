@@ -114,7 +114,7 @@ const ScrollingImageGallery = ({highlight}) => {
                                     <FullImage isGrid={isGrid} setIsGrid={setIsGrid}/>
                                     <GridImages isGrid={isGrid} setIsGrid={setIsGrid}/>
                                 </div>
-                                <img id="exit-button" className="icon" onClick={closeGallery} loading='lazy' src={'src/assets/svgs/font_awesome/exit.svg'} />
+                                <img id="exit-button" className="icon" onClick={closeGallery} loading='lazy' src={getCloudFrontUrl('assets/svgs/font_awesome/exit.svg')} />
                             </div>
 
                             {

@@ -55,7 +55,7 @@ function SideBar() {
 
   useEffect(() => {
     const currentLump = lumpRef.current;
-    
+
     switch(currentIcon) {
         case "hero":
             currentLump.style.transform = 'translateY(-7.5px) rotate(-90deg)';
@@ -78,7 +78,7 @@ function SideBar() {
         {
             !exposeSideBar && (
                 <div id='menu-button' onClick={() => setExposeSideBar(!exposeSideBar)}>
-                    <img src="src/assets/svgs/font_awesome/hamburger.svg" />
+                    <img src={getCloudFrontUrl('assets/svgs/font_awesome/hamburger.svg')} />
                 </div>
             )
         }
