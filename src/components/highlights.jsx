@@ -80,6 +80,7 @@ function Highlights() {
           fade && <ScrollingImageGallery highlight={highlight}/>
         }
       </div>
+      
       <Divider name={"gallery-bottom-divider"}/>
     </div>
   );

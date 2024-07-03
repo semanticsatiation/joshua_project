@@ -3,6 +3,7 @@ import { scrollToMiddle } from '../utils/scrollHelper';
 
 function Header() {
   const nameRef = useRef(null);
+  const headerRef = useRef(null);
 
   useEffect(() => {
     document.body.onscroll = () => {
@@ -17,7 +18,7 @@ function Header() {
   }, []);
 
   return (
-    <div id='header'>
+    <div ref={headerRef} id='header'>
         <nav>
           <ul id='header-list'>
             <li>

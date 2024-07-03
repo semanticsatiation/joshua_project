@@ -9,6 +9,7 @@ export const scrollToMiddle = (id) => {
     } else {
         // offset scroll when header is present
         window.scrollTo({
+            // -20 is to take dividers into consideration
             top: -20 + targetElement.offsetTop + targetElement.offsetHeight / 2 - window.innerHeight / 2 - headerHeight / 2,
             behavior: 'smooth'
         });

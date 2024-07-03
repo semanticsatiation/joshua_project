@@ -123,15 +123,7 @@ html {
 	overflow: hidden;
 }
 
-.no-scroll #header {
-	/* IMPORTANT */
-	/* header can not be hidden behind #main-image-wrapper because #main-image-wrapper is a child while header is a top level parent so this is a hack for now*/
-	/* z-index: 0; or */
-	pointer-events: none;
-	opacity: 0 !important;
-}
-
-.no-scroll #side-bar, .no-scroll #menu-button, .no-scroll #contact {
+.no-scroll #side-bar, .no-scroll #menu-button, .no-scroll #contact, .no-scroll .gallery-bottom-divider, .no-scroll #header {
 	display: none;
 }
 
@@ -268,7 +260,7 @@ html {
 	} 
 }
 
-p, #social-container h2 {
+p, #social-container h2, #attribute {
 	font-family: "Nunito Sans", sans-serif;
 	font-weight: 700;
 	line-height: 1.4em;
@@ -297,8 +289,6 @@ p, #social-container h2 {
 	font-weight: 500;
 	font-style: normal;
 	letter-spacing: 0.1em;
-	opacity: 0;
-	animation: fade-in 4s 0.2s forwards;
 	font-size: 0.9em;
 }
 
@@ -736,7 +726,7 @@ footer > span {
 }
 
 .gallery-bottom-divider {
-    bottom: 0px;
+    bottom: 0;
 	transform: rotate(180deg);
 }
 
