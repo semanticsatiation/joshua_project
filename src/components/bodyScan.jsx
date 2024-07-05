@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { getCloudFrontUrl } from '../utils/imageHelper';
+import Divider from './svgs/divider.jsx';
 
 function BodyScan() {
   const bodyRef = useRef();
@@ -40,6 +41,7 @@ function BodyScan() {
 
   return (
     <div className="section" id='features'>
+      <Divider name={"body-scan-top-divider"}/>
       <div id='body-container'>
         <img loading="lazy" ref={bodyRef} id='body' src={getCloudFrontUrl("assets/svgs/body_scan/body.svg")} alt="" />
         <object ref={headRef} id='head-animation' type="image/svg+xml" data={getCloudFrontUrl("assets/svgs/body_scan/head_labels.svg")}></object>

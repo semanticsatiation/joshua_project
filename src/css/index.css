@@ -734,12 +734,12 @@ footer > span {
 	fill: #101010;
 }
 
-#hero .hero-bottom-divider {
+#features .body-scan-top-divider {
 	transform: rotate(180deg);
-	bottom: 0;
+	top: -40px;
 }
 
-.hero-bottom-divider .shape-fill {
+.body-scan-top-divider .shape-fill {
 	fill: #101010;
 }
 

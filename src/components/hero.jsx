@@ -1,5 +1,4 @@
 import { getCloudFrontUrl } from '../utils/imageHelper';
-import Divider from './svgs/divider';
 import Signature from './svgs/signature';
 
 function Hero() {
@@ -12,8 +11,6 @@ function Hero() {
         <div id='signature-container'>
           <Signature/>
         </div>
-        
-        <Divider name={"hero-bottom-divider"}/>
     </div>
   );
 }
