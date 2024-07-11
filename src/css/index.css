@@ -52,6 +52,25 @@ html {
 	background-color: #101010;
 }
 
+#logo-intro {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	height: 100vh;
+	width: 100%;
+	background-color: black;
+	z-index: 9999;
+	animation: fade-out 2s 3s forwards;
+}
+
+#logo {
+	display: block;
+	margin: auto;
+	max-width: 1200px;
+	animation: fade-out 2s 3s forwards;
+}
+
 #main-image-wrapper {
 	position: fixed;
 	z-index: 9999;
@@ -147,15 +166,6 @@ html {
 	padding: 5px;
 }
 
-@keyframes fade-in {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 100%;
-	} 
-}
-
 .section {
 	margin: auto;
 	padding: 100px 1em 100px 1em;
@@ -166,7 +176,7 @@ html {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	animation: fade-in 4s 1.5s forwards;
+	animation: fade-in 2s 4s forwards;
 	opacity: 0;
 }
 
@@ -242,22 +252,6 @@ html {
 		fill: #b88321;
 	}
 	 
-}
-
- /* Most browsers */
-@keyframes svg-text-anim {
-	40% {
-		stroke-dashoffset: 0;
-		fill: transparent;
-	}
-	60% {
-		stroke-dashoffset: 0;
-		fill: #b88321;
-	}
-	100% {
-		stroke-dashoffset: 0;
-		fill: #b88321;
-	} 
 }
 
 p, #social-container h2, #attribute {
@@ -407,18 +401,6 @@ a {
 #header-list .shrink-name {
 	font-size: 1.3em;
 	letter-spacing: 0.3em;
-}
-
-@keyframes squish {
-	0% {
-		opacity: 0;
-		letter-spacing: 1.5em;
-	}
-
-	100% {
-		opacity: 100%;
-		letter-spacing: 0.4em;
-	}
 }
 
 .swiper-wrapper{
@@ -743,6 +725,41 @@ footer > span {
 	fill: #101010;
 }
 
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 100%;
+	} 
+}
+
+@keyframes fade-out {
+	0% {
+		opacity: 100%;
+	}
+	100% {
+		display: none;
+		opacity: 0%;
+	} 
+}
+
+ /* Most browsers */
+@keyframes svg-text-anim {
+	40% {
+		stroke-dashoffset: 0;
+		fill: transparent;
+	}
+	60% {
+		stroke-dashoffset: 0;
+		fill: #b88321;
+	}
+	100% {
+		stroke-dashoffset: 0;
+		fill: #b88321;
+	} 
+}
+
 @media (min-width: 700px) {
 	#contact-container {
 		display: flex;
@@ -885,6 +902,10 @@ footer > span {
 	#social-container {
 		margin-bottom: 0;
 		text-align: initial;
+	}
+
+	#social-container p {
+		margin-right: 80px;
 	}
 
 	#social-list {

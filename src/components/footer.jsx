@@ -7,12 +7,12 @@ function Footer() {
         <div id="footer-container">
           <div id="social-container">
             <h2>Get In Touch</h2>
-            <p>Always looking for opportunities.</p>
+            <p>I am always eager to explore new opportunities and collaborations. Don’t hesitate to reach out!</p>
             <nav>
               <ul id="social-list">
-                <li><a target="_blank" href=""><img className='icon' src={getCloudFrontUrl('assets/svgs/font_awesome/instagram.svg')} /></a></li>
-                <li><a target="_blank" href=""><img className='icon' src={getCloudFrontUrl('assets/svgs/font_awesome/facebook.svg')} /></a></li>
-                <li><a target="_blank" href=""><img className='icon' src={getCloudFrontUrl('assets/svgs/font_awesome/linkedin.svg')} /></a></li>
+                {/* <li><a target="_blank" href=""><img className='icon' src={getCloudFrontUrl('assets/svgs/font_awesome/instagram.svg')} /></a></li>
+                <li><a target="_blank" href=""><img className='icon' src={getCloudFrontUrl('assets/svgs/font_awesome/facebook.svg')} /></a></li> */}
+                <li><a target="_blank" href="https://www.linkedin.com/in/joshua-drummond-017021284/"><img className='icon' src={getCloudFrontUrl('assets/svgs/font_awesome/linkedin.svg')} /></a></li>
               </ul>
             </nav>
           </div>

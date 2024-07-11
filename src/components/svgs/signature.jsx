@@ -60,7 +60,7 @@ function Signature() {
 			signatureRef.current.style.display = "initial";
 			signatureRef2.current.style.display = "initial";
 			signatureRef3.current.style.display = "initial";
-		}, 3400);
+		}, 5200);
 	}, []);
 
 	return (
