@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { getCloudFrontUrl } from '../utils/imageHelper';
 import Divider from './svgs/divider.jsx';
 
 function BodyScan() {
@@ -43,11 +42,11 @@ function BodyScan() {
     <div className="section" id='features'>
       <Divider name={"body-scan-top-divider"}/>
       <div id='body-container'>
-        <img loading="lazy" ref={bodyRef} id='body' src={getCloudFrontUrl("assets/svgs/body_scan/body.svg")} alt="" />
-        <object ref={headRef} id='head-animation' type="image/svg+xml" data={getCloudFrontUrl("assets/svgs/body_scan/head_labels.svg")}></object>
-        <object ref={upperRef} id='upper-body-animation' type="image/svg+xml" data={getCloudFrontUrl("assets/svgs/body_scan/upper_body_labels.svg")}></object>
-        <object ref={lowerRef} id='lower-body-animation' type="image/svg+xml" data={getCloudFrontUrl("assets/svgs/body_scan/lower_body_labels.svg")}></object>
-        <object ref={feetRef} id='feet-animation' type="image/svg+xml" data={getCloudFrontUrl("assets/svgs/body_scan/feet_labels.svg")}></object>
+        <img loading="lazy" ref={bodyRef} id='body' src={"/body_scan/body.svg"} alt="" />
+        <object ref={headRef} id='head-animation' type="image/svg+xml" data={"/body_scan/head_labels.svg"}></object>
+        <object ref={upperRef} id='upper-body-animation' type="image/svg+xml" data={"/body_scan/upper_body_labels.svg"}></object>
+        <object ref={lowerRef} id='lower-body-animation' type="image/svg+xml" data={"/body_scan/lower_body_labels.svg"}></object>
+        <object ref={feetRef} id='feet-animation' type="image/svg+xml" data={"/body_scan/feet_labels.svg"}></object>
       </div>
       <span id="attribute">Human outline by <a target='_blank' href="https://www.freepik.com/free-vector/hand-drawn-human-body-outline-illustration_49669604.htm">Freepik</a></span>
     </div>
